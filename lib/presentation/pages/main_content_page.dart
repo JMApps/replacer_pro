@@ -16,7 +16,7 @@ class MainContentPage extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<DescriptionContentState>().loadValues();
     context.read<MainContentState>().loadDropDownValue();
-    FocusScopeNode _currentFocus = FocusScope.of(context);
+    FocusScopeNode currentFocus = FocusScope.of(context);
     return GestureDetector(
       child: Scaffold(
         appBar: const PreferredSize(
@@ -35,8 +35,8 @@ class MainContentPage extends StatelessWidget {
         ),
       ),
       onTap: () {
-        if (!_currentFocus.hasPrimaryFocus) {
-          _currentFocus.unfocus();
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
         }
       },
     );
