@@ -1,8 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="jmapps.replacerpro.replacer_pro">
    <application
-        android:label="replacer_pro"
-        android:name="${applicationName}"
+        android:label="Букварь PRO"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
