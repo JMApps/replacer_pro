@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:replacer_pro/presentation/widgets/main_app_bar.dart';
+import 'package:replacer_pro/presentation/widgets/main_content_text_input.dart';
 
 class MainContentPage extends StatelessWidget {
   const MainContentPage({Key? key}) : super(key: key);
@@ -13,8 +14,11 @@ class MainContentPage extends StatelessWidget {
         child: MainAppBar(),
       ),
       body: Column(
-        children: [
-
+        children: const [
+          Padding(
+            padding: EdgeInsets.all(16),
+            child: MainContentTextInput(),
+          ),
         ],
       ),
     );
