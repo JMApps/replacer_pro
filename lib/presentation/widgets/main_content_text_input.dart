@@ -22,7 +22,7 @@ class MainContentTextInput extends StatelessWidget {
           labelText: 'Добавьте текст',
           alignLabelWithHint: true,
           floatingLabelAlignment: FloatingLabelAlignment.center,
-          hintText: 'Напишите текст или просто вставьте скопированный и преобразуйте его...',
+          hintText: 'Напишите текст или просто вставьте скопированный и нажмите кнопку Применить..',
           hintStyle: const TextStyle(
             fontSize: 16,
           ),

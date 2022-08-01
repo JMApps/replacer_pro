@@ -10,7 +10,7 @@ class MainContentButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         TextButton.icon(
@@ -27,9 +27,19 @@ class MainContentButtons extends StatelessWidget {
               (value) {
                 context.read<MainContentState>().getCurrentMainContent(value);
                 context.read<MainContentState>().getMainContentInputTextController.text = value;
+                if (value.isNotEmpty) {
+                  _showSnackMessage(context, Colors.grey, 'Вставлено из буфера обмена');
+                }
               },
             );
           },
+          style: TextButton.styleFrom(
+            primary: Colors.grey,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+              side: const BorderSide(color: Colors.grey),
+            ),
+          ),
         ),
         TextButton.icon(
           label: const Text(
@@ -61,14 +71,25 @@ class MainContentButtons extends StatelessWidget {
             if (context.read<MainContentState>().getDefaultContent.isNotEmpty &&
                 context.read<MainContentState>().getDefaultContent != null) {
               if (context.read<DescriptionContentState>().getIsDescription &&
-              context.read<DescriptionContentState>().getDescriptionValue.isNotEmpty) {
-                FlutterClipboard.copy('${context.read<MainContentState>().getDefaultContent}\n\n'
+                  context.read<DescriptionContentState>().getDescriptionValue.isNotEmpty) {
+                FlutterClipboard.copy(
+                    '${context.read<MainContentState>().getDefaultContent}\n\n'
                     '${context.read<DescriptionContentState>().getDescriptionValue}');
+                _showSnackMessage(context, Colors.teal, 'Преобразовано и скопировано');
               } else {
-                FlutterClipboard.copy(context.read<MainContentState>().getDefaultContent);
+                FlutterClipboard.copy(
+                    context.read<MainContentState>().getDefaultContent);
+                _showSnackMessage(context, Colors.teal, 'Преобразовано и скопировано');
               }
             }
           },
+          style: TextButton.styleFrom(
+            primary: Colors.teal,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+              side: const BorderSide(color: Colors.teal),
+            ),
+          ),
         ),
         TextButton.icon(
           label: const Text(
@@ -85,10 +106,35 @@ class MainContentButtons extends StatelessWidget {
             if (context.read<MainContentState>().getDefaultContent.isNotEmpty) {
               context.read<MainContentState>().getMainContentInputTextController.clear();
               context.read<MainContentState>().getCurrentMainContent('');
+              _showSnackMessage(context, Colors.red, 'Очищено');
             }
           },
+          style: TextButton.styleFrom(
+            primary: Colors.red,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+              side: const BorderSide(color: Colors.red),
+            ),
+          ),
         ),
       ],
+    );
+  }
+
+  _showSnackMessage(BuildContext context, Color color, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: color,
+        content: Text(
+          message,
+          style: const TextStyle(
+            fontSize: 16,
+            color: Colors.white,
+          ),
+        ),
+        duration: const Duration(milliseconds: 1250),
+      ),
     );
   }
 }

@@ -14,7 +14,7 @@ class DescriptionContentState extends ChangeNotifier {
 
   String get getDescriptionValue => _descriptionValue;
 
-  bool _isDescription = true;
+  bool _isDescription = false;
 
   bool get getIsDescription => _isDescription;
 
@@ -31,7 +31,7 @@ class DescriptionContentState extends ChangeNotifier {
   }
 
   loadValues() {
-    _isDescription = mainAddedContent.get(Constants.keySwitchDescriptionContent, defaultValue: true);
+    _isDescription = mainAddedContent.get(Constants.keySwitchDescriptionContent, defaultValue: false);
     _descriptionValue = mainAddedContent.get(Constants.keyDescriptionContent, defaultValue: '');
     _descContentInputTextController.text = _descriptionValue;
   }
