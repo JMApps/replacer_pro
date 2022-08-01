@@ -19,18 +19,21 @@ class MainContentPage extends StatelessWidget {
     FocusScopeNode currentFocus = FocusScope.of(context);
     return GestureDetector(
       child: Scaffold(
+        resizeToAvoidBottomInset: true,
         appBar: const PreferredSize(
           preferredSize: Size(double.maxFinite, 50),
           child: MainAppBar(),
         ),
         body: CupertinoScrollbar(
-          child: Column(
-            children: const [
-              InputDropDownList(),
-              MainContentTextInput(),
-              MainContentButtons(),
-              DescriptionContentTile(),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: const [
+                InputDropDownList(),
+                MainContentTextInput(),
+                MainContentButtons(),
+                DescriptionContentTile(),
+              ],
+            ),
           ),
         ),
       ),

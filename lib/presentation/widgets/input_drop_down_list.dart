@@ -18,8 +18,8 @@ class InputDropDownList extends StatelessWidget {
         child: DropdownButton(
           value: context.watch<MainContentState>().getDropDownValue,
           elevation: 0,
-          style: TextStyle(
-            color: Colors.red[400],
+          style: const TextStyle(
+            color: Colors.blue,
             fontSize: 16,
           ),
           underline: Container(

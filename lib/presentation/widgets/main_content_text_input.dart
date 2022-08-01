@@ -10,29 +10,26 @@ class MainContentTextInput extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: TextFormField(
-        controller: context.watch<MainContentState>().getMainContentInputTextController,
+        controller:
+            context.watch<MainContentState>().getMainContentInputTextController,
         autofocus: false,
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.done,
-        maxLines: 10,
-        minLines: 10,
+        maxLines: 7,
+        minLines: 5,
         textAlign: TextAlign.center,
         decoration: InputDecoration(
           labelText: 'Добавьте текст',
           alignLabelWithHint: true,
-          labelStyle: TextStyle(
-            color: Colors.red[400],
-          ),
           floatingLabelAlignment: FloatingLabelAlignment.center,
-          hintText: 'Напишите текст или просто вставьте скопированный и вновь скопируйте его...',
-          hintStyle: TextStyle(
+          hintText: 'Напишите текст или просто вставьте скопированный и преобразуйте его...',
+          hintStyle: const TextStyle(
             fontSize: 16,
-            color: Colors.red[200],
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
-            borderSide: BorderSide(
-              color: Colors.red[400]!,
+            borderSide: const BorderSide(
+              color: Colors.blue,
               width: 1.5,
             ),
           ),

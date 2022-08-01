@@ -10,7 +10,7 @@ class MainAppBar extends StatelessWidget {
       centerTitle: true,
       elevation: 0,
       title: const Text('Букварь PRO'),
-      backgroundColor: Colors.red[400],
+      backgroundColor: Colors.blue,
       actions: [
         IconButton(
           icon: const Icon(CupertinoIcons.info),

@@ -20,7 +20,7 @@ class MainContentButtons extends StatelessWidget {
               child: SizedBox(
                 width: double.maxFinite,
                 child: MaterialButton(
-                  color: Colors.red[400],
+                  color: Colors.blue,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12.5),
                   ),
@@ -33,12 +33,10 @@ class MainContentButtons extends StatelessWidget {
                   ),
                   onPressed: () {
                     FlutterClipboard.paste().then((value) {
-                      context
-                          .read<MainContentState>()
-                          .getMainContentInputTextController
-                          .text = value;
+                      context.read<MainContentState>().getMainContentInputTextController.text = value;
                       context.read<MainContentState>().getCurrentText();
-                    });
+                    },
+                    );
                   },
                 ),
               ),
@@ -49,7 +47,7 @@ class MainContentButtons extends StatelessWidget {
               child: SizedBox(
                 width: double.maxFinite,
                 child: MaterialButton(
-                  color: Colors.red[400],
+                  color: Colors.blue,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12.5),
                   ),
@@ -77,14 +75,17 @@ class MainContentButtons extends StatelessWidget {
                       default:
                         'Обычный текст';
                     }
-                    if (context.read<DescriptionContentState>().getIsDescription) {
-                      context.read<DescriptionContentState>().getDescriptionContent();
-                      if (context.read<DescriptionContentState>().getDescriptionValue.isNotEmpty) {
-                        FlutterClipboard.copy('${context.read<MainContentState>().getDefaultValue}\n\n'
-                            '${context.read<DescriptionContentState>().getDescriptionValue}');
+                    if (context.read<MainContentState>().getDefaultValue.isNotEmpty) {
+                      if (context.read<DescriptionContentState>().getIsDescription) {
+                        if (context.read<DescriptionContentState>().getDescriptionValue.isNotEmpty) {
+                          FlutterClipboard.copy('${context.read<MainContentState>().getDefaultValue}\n\n'
+                              '${context.read<DescriptionContentState>().getDescriptionValue}');
+                        }
+                      } else {
+                        FlutterClipboard.copy(context.read<MainContentState>().getDefaultValue);
                       }
                     } else {
-                      FlutterClipboard.copy(context.read<MainContentState>().getDefaultValue);
+
                     }
                   },
                 ),
@@ -101,7 +102,7 @@ class MainContentButtons extends StatelessWidget {
               child: SizedBox(
                 width: double.maxFinite,
                 child: MaterialButton(
-                  color: Colors.green[400],
+                  color: Colors.teal,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12.5),
                   ),

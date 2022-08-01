@@ -10,7 +10,7 @@ class DescriptionContentTile extends StatelessWidget {
     return ListTile(
       contentPadding: const EdgeInsets.all(16),
       trailing: Switch.adaptive(
-        activeColor: Colors.red[400],
+        activeColor: Colors.blue,
         value: context.watch<DescriptionContentState>().getIsDescription,
         onChanged: (bool onChanged) {
           context.read<DescriptionContentState>().changeSwitchDescription(onChanged);
@@ -26,12 +26,12 @@ class DescriptionContentTile extends StatelessWidget {
         minLines: 1,
         decoration: InputDecoration(
           labelText: context.watch<DescriptionContentState>().getIsDescription ? 'Добавить подпись' : 'Подпись отключена',
-          labelStyle: TextStyle(color: Colors.red[400]),
+          labelStyle: const TextStyle(color: Colors.blue),
           hintText: 'Ссылки, хештеги и пр...',
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
-            borderSide: BorderSide(
-              color: Colors.red[400]!,
+            borderSide: const BorderSide(
+              color: Colors.blue,
               width: 1.5,
             ),
           ),
