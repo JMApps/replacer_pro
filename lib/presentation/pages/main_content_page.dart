@@ -14,8 +14,8 @@ class MainContentPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<DescriptionContentState>().loadValues();
     context.read<MainContentState>().loadDropDownValue();
+    context.read<DescriptionContentState>().loadValues();
     FocusScopeNode currentFocus = FocusScope.of(context);
     return GestureDetector(
       child: Scaffold(
@@ -25,15 +25,13 @@ class MainContentPage extends StatelessWidget {
           child: MainAppBar(),
         ),
         body: CupertinoScrollbar(
-          child: SingleChildScrollView(
-            child: Column(
-              children: const [
-                InputDropDownList(),
-                MainContentTextInput(),
-                MainContentButtons(),
-                DescriptionContentTile(),
-              ],
-            ),
+          child: ListView(
+            children: const [
+              InputDropDownList(),
+              MainContentTextInput(),
+              MainContentButtons(),
+              DescriptionContentTile(),
+            ],
           ),
         ),
       ),

@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:replacer_pro/domain/constants.dart';
 
-class DescriptionContentState with ChangeNotifier {
+class DescriptionContentState extends ChangeNotifier {
 
   var mainAddedContent = Hive.box(Constants.keyMainAddedContent);
 
-  final _descriptionContentInputTextController = TextEditingController();
+  final _descContentInputTextController = TextEditingController();
 
-  TextEditingController get getDescriptionContentInputTextController => _descriptionContentInputTextController;
-
-  bool _isDescription = true;
-
-  bool get getIsDescription => _isDescription;
+  TextEditingController get getDescContentInputTextController => _descContentInputTextController;
 
   String _descriptionValue = '';
 
   String get getDescriptionValue => _descriptionValue;
+
+  bool _isDescription = true;
+
+  bool get getIsDescription => _isDescription;
 
   changeSwitchDescription(bool state) {
     _isDescription = state;
@@ -24,8 +24,8 @@ class DescriptionContentState with ChangeNotifier {
     notifyListeners();
   }
 
-  getDescriptionContent() {
-    _descriptionValue = _descriptionContentInputTextController.text;
+  getDescriptionContent(String value) {
+    _descriptionValue = value;
     mainAddedContent.put(Constants.keyDescriptionContent, _descriptionValue);
     notifyListeners();
   }
@@ -33,6 +33,13 @@ class DescriptionContentState with ChangeNotifier {
   loadValues() {
     _isDescription = mainAddedContent.get(Constants.keySwitchDescriptionContent, defaultValue: true);
     _descriptionValue = mainAddedContent.get(Constants.keyDescriptionContent, defaultValue: '');
-    _descriptionContentInputTextController.text = _descriptionValue;
+    _descContentInputTextController.text = _descriptionValue;
+  }
+
+  @override
+  void dispose() {
+    mainAddedContent.put(Constants.keyDescriptionContent, _descriptionValue);
+    _descContentInputTextController.dispose();
+    super.dispose();
   }
 }

@@ -17,17 +17,21 @@ class DescriptionContentTile extends StatelessWidget {
         },
       ),
       title: TextFormField(
-        controller: context.watch<DescriptionContentState>().getDescriptionContentInputTextController,
-        enabled: context.watch<DescriptionContentState>().getIsDescription,
         autofocus: false,
+        autocorrect: false,
         keyboardType: TextInputType.text,
-        textInputAction: TextInputAction.done,
         maxLines: 1,
-        minLines: 1,
+        textAlign: TextAlign.left,
+        controller: context.watch<DescriptionContentState>().getDescContentInputTextController,
+        enabled: context.watch<DescriptionContentState>().getIsDescription,
         decoration: InputDecoration(
-          labelText: context.watch<DescriptionContentState>().getIsDescription ? 'Добавить подпись' : 'Подпись отключена',
-          labelStyle: const TextStyle(color: Colors.blue),
+          alignLabelWithHint: false,
+          floatingLabelAlignment: FloatingLabelAlignment.center,
+          label: Text(context.watch<DescriptionContentState>().getIsDescription ? 'Введите подпись' : 'Подпись отключена'),
           hintText: 'Ссылки, хештеги и пр...',
+          hintStyle: const TextStyle(
+            fontSize: 16,
+          ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
             borderSide: const BorderSide(
@@ -39,6 +43,11 @@ class DescriptionContentTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
           ),
         ),
+        onChanged: (String? value) {
+          context.read<DescriptionContentState>().getDescriptionContent(value!);
+        },
+        onTap: () {
+       },
       ),
     );
   }

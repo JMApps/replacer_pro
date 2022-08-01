@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:replacer_pro/domain/constants.dart';
 
-class MainContentState with ChangeNotifier {
+class MainContentState extends ChangeNotifier {
 
   var mainAddedContent = Hive.box(Constants.keyMainAddedContent);
 
@@ -10,9 +10,9 @@ class MainContentState with ChangeNotifier {
 
   TextEditingController get getMainContentInputTextController => _mainContentInputTextController;
 
-  String _defaultValue = '';
+  String _defaultContent = '';
 
-  String get getDefaultValue => _defaultValue;
+  String get getDefaultContent => _defaultContent;
 
   String _dropDownValue = 'Обычный текст';
 
@@ -27,40 +27,42 @@ class MainContentState with ChangeNotifier {
   final List<String> varFourCoded = ['а', 'о', 'с', 'х', 'р', 'у',];
   final List<String> varFourDeCoded = ['a', 'o', 'c', 'x', 'p', 'y'];
 
-
-  getCurrentText() {
-    _defaultValue = _mainContentInputTextController.text;
-    notifyListeners();
-  }
-
   changeDropDownValue(String newValue) {
     _dropDownValue = newValue;
     mainAddedContent.put(Constants.keyDropDownValue, _dropDownValue);
     notifyListeners();
   }
 
+  getCurrentMainContent(String mainContent) {
+    _defaultContent = mainContent;
+    notifyListeners();
+  }
+
   replaceVarTwoText() {
-    _defaultValue = _mainContentInputTextController.text;
     Map<String, String> map = Map.fromIterables(varTwoCoded, varTwoDeCoded);
-    _defaultValue = map.entries.fold(_defaultValue, (previousValue, element) => previousValue.replaceAll(element.key, element.value));
+    _defaultContent = map.entries.fold(_defaultContent, (previousValue, element) => previousValue.replaceAll(element.key, element.value));
     notifyListeners();
   }
 
   replaceVarThreeText() {
-    _defaultValue = _mainContentInputTextController.text;
     Map<String, String> map = Map.fromIterables(varThreeCoded, varThreeDeCoded);
-    _defaultValue = map.entries.fold(_defaultValue, (previousValue, element) => previousValue.replaceAll(element.key, element.value));
+    _defaultContent = map.entries.fold(_defaultContent, (previousValue, element) => previousValue.replaceAll(element.key, element.value));
     notifyListeners();
   }
 
   replaceVarFourText() {
-    _defaultValue = _mainContentInputTextController.text;
     Map<String, String> map = Map.fromIterables(varFourCoded, varFourDeCoded);
-    _defaultValue = map.entries.fold(_defaultValue, (previousValue, element) => previousValue.replaceAll(element.key, element.value));
+    _defaultContent = map.entries.fold(_defaultContent, (previousValue, element) => previousValue.replaceAll(element.key, element.value));
     notifyListeners();
   }
 
   loadDropDownValue() {
     _dropDownValue = mainAddedContent.get(Constants.keyDropDownValue, defaultValue: 'Обычный текст');
+  }
+
+  @override
+  void dispose() {
+    _mainContentInputTextController.dispose();
+    super.dispose();
   }
 }

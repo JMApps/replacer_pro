@@ -10,9 +10,9 @@ class MainContentTextInput extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: TextFormField(
-        controller:
-            context.watch<MainContentState>().getMainContentInputTextController,
+        controller: context.watch<MainContentState>().getMainContentInputTextController,
         autofocus: false,
+        autocorrect: false,
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.done,
         maxLines: 7,
@@ -37,6 +37,9 @@ class MainContentTextInput extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
           ),
         ),
+        onChanged: (String? value) {
+          context.read<MainContentState>().getCurrentMainContent(value!);
+        },
       ),
     );
   }
