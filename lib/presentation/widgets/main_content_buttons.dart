@@ -84,6 +84,7 @@ class MainContentButtons extends StatelessWidget {
           onPressed: () {
             if (context.read<MainContentState>().getDefaultContent.isNotEmpty) {
               context.read<MainContentState>().getMainContentInputTextController.clear();
+              context.read<MainContentState>().getCurrentMainContent('');
             }
           },
         ),
