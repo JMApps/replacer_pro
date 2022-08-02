@@ -11,13 +11,6 @@ class MainAppBar extends StatelessWidget {
       elevation: 0,
       title: const Text('Букварь PRO'),
       backgroundColor: Colors.blue,
-      actions: [
-        IconButton(
-          icon: const Icon(CupertinoIcons.info),
-          splashRadius: 20,
-          onPressed: () {},
-        ),
-      ],
     );
   }
 }

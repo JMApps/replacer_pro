@@ -51,10 +51,11 @@ class MainContentButtons extends StatelessWidget {
             color: Colors.teal,
           ),
           onPressed: () {
+            context.read<MainContentState>().getCurrentMainContent(context.read<MainContentState>().getMainContentInputTextController.text);
             switch (context.read<MainContentState>().getDropDownValue) {
               case 'Обычный текст':
                 // check
-                context.read<MainContentState>().getDefaultContent;
+                context.read<MainContentState>().getMainContentInputTextController.text;
                 break;
               case 'nользоваmельсkuũ':
                 context.read<MainContentState>().replaceVarTwoText();
@@ -68,8 +69,8 @@ class MainContentButtons extends StatelessWidget {
               default:
                 'Обычный текст';
             }
-            if (context.read<MainContentState>().getDefaultContent.isNotEmpty &&
-                context.read<MainContentState>().getDefaultContent != null) {
+            if (context.read<MainContentState>().getMainContentInputTextController.text.isNotEmpty &&
+                context.read<MainContentState>().getMainContentInputTextController.text != null) {
               if (context.read<DescriptionContentState>().getIsDescription &&
                   context.read<DescriptionContentState>().getDescriptionValue.isNotEmpty) {
                 FlutterClipboard.copy(
@@ -133,7 +134,7 @@ class MainContentButtons extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        duration: const Duration(milliseconds: 1250),
+        duration: const Duration(milliseconds: 250),
       ),
     );
   }

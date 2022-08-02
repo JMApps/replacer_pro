@@ -18,10 +18,13 @@ class MainPage extends StatelessWidget {
           create: (_) => DescriptionContentState(),
         ),
       ],
-      child: const MaterialApp(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Букварь PRO',
-        home: MainContentPage(),
+        theme: ThemeData(
+          fontFamily: 'Gilroy'
+        ),
+        home: const MainContentPage(),
       ),
     );
   }

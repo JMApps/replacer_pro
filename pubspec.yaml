@@ -26,3 +26,10 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
+
+  assets:
+    - assets/fonts/
+  fonts:
+    - family: Gilroy
+      fonts:
+        - asset: assets/fonts/gilroy_light.ttf

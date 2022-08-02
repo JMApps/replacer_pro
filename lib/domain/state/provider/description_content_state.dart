@@ -34,6 +34,7 @@ class DescriptionContentState extends ChangeNotifier {
     _isDescription = mainAddedContent.get(Constants.keySwitchDescriptionContent, defaultValue: false);
     _descriptionValue = mainAddedContent.get(Constants.keyDescriptionContent, defaultValue: '');
     _descContentInputTextController.text = _descriptionValue;
+    _descContentInputTextController.selection = TextSelection.fromPosition(TextPosition(offset: _descContentInputTextController.text.length));
   }
 
   @override

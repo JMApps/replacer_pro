@@ -20,14 +20,12 @@ class DescriptionContentTile extends StatelessWidget {
         autofocus: false,
         autocorrect: false,
         keyboardType: TextInputType.text,
-        maxLines: 1,
-        textAlign: TextAlign.left,
         controller: context.watch<DescriptionContentState>().getDescContentInputTextController,
         enabled: context.watch<DescriptionContentState>().getIsDescription,
         decoration: InputDecoration(
           alignLabelWithHint: false,
           floatingLabelAlignment: FloatingLabelAlignment.center,
-          label: Text(context.watch<DescriptionContentState>().getIsDescription ? 'Введите подпись' : 'Подпись отключена'),
+          label: Text(context.watch<DescriptionContentState>().getIsDescription ? 'Добавьте подпись' : 'Подпись отключена'),
           hintText: 'Ссылки, хештеги и пр...',
           hintStyle: const TextStyle(
             fontSize: 16,
@@ -46,8 +44,6 @@ class DescriptionContentTile extends StatelessWidget {
         onChanged: (String? value) {
           context.read<DescriptionContentState>().getDescriptionContent(value!);
         },
-        onTap: () {
-       },
       ),
     );
   }

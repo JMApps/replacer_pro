@@ -26,11 +26,20 @@ class MainContentPage extends StatelessWidget {
         ),
         body: CupertinoScrollbar(
           child: ListView(
-            children: const [
-              InputDropDownList(),
-              MainContentTextInput(),
-              MainContentButtons(),
-              DescriptionContentTile(),
+            children: [
+              const InputDropDownList(),
+              const MainContentTextInput(),
+              const MainContentButtons(),
+              const DescriptionContentTile(),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 16,
+                  right: 16,
+                  bottom: 16,
+                ),
+                child: SelectableText(
+                    'Предварительный вид:\n\n${context.watch<MainContentState>().getDefaultContent}'),
+              ),
             ],
           ),
         ),

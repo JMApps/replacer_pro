@@ -24,8 +24,8 @@ class MainContentState extends ChangeNotifier {
   final List<String> varThreeCoded = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я'];
   final List<String> varThreeDeCoded = ['ã', 'ɓ', 'Ᏸ', 'г', 'ğ', 'ę', 'ē', 'ӝ', 'ჳ', 'u', 'ũ', 'ќ', 'л', 'ḿ', 'ӈ', 'ó', 'ń', 'ҏ', 'ċ', 'm', 'ẏ', 'ჶ', 'ᶍ', 'ų', 'ӵ', 'ω', 'ખ', '৮', 'ӹ', '৮', 'ӭ', 'ю', 'я'];
 
-  final List<String> varFourCoded = ['а', 'о', 'с', 'х', 'р', 'у',];
-  final List<String> varFourDeCoded = ['a', 'o', 'c', 'x', 'p', 'y'];
+  final List<String> varFourCoded = ['а', 'о', 'с', 'х', 'р', 'у', 'е', 'р'];
+  final List<String> varFourDeCoded = ['a', 'o', 'c', 'x', 'p', 'y', 'e', 'p'];
 
   changeDropDownValue(String newValue) {
     _dropDownValue = newValue;
