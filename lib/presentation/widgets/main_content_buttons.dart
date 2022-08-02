@@ -4,23 +4,25 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:replacer_pro/domain/state/provider/description_content_state.dart';
 import 'package:replacer_pro/domain/state/provider/main_content_state.dart';
+import 'package:replacer_pro/domain/theme/app_theme.dart';
 
 class MainContentButtons extends StatelessWidget {
   const MainContentButtons({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final myColor = Theme.of(context).colorScheme;
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         TextButton.icon(
-          label: const Text(
+          label: Text(
             'Вставить',
-            style: TextStyle(color: Colors.grey),
+            style: TextStyle(color: myColor.pasteButtonColor),
           ),
-          icon: const Icon(
+          icon: Icon(
             CupertinoIcons.add_circled,
-            color: Colors.grey,
+            color: myColor.pasteButtonColor,
           ),
           onPressed: () {
             FlutterClipboard.paste().then(
@@ -28,27 +30,27 @@ class MainContentButtons extends StatelessWidget {
                 context.read<MainContentState>().getCurrentMainContent(value);
                 context.read<MainContentState>().getMainContentInputTextController.text = value;
                 if (value.isNotEmpty) {
-                  _showSnackMessage(context, Colors.grey, 'Вставлено из буфера обмена');
+                  _showSnackMessage(context, myColor.pasteButtonColor, 'Вставлено из буфера обмена');
                 }
               },
             );
           },
           style: TextButton.styleFrom(
-            primary: Colors.grey,
+            primary: myColor.pasteButtonColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
-              side: const BorderSide(color: Colors.grey),
+              side: BorderSide(color: myColor.pasteButtonColor),
             ),
           ),
         ),
         TextButton.icon(
-          label: const Text(
+          label: Text(
             'Применить',
-            style: TextStyle(color: Colors.teal),
+            style: TextStyle(color: myColor.changeButtonColor),
           ),
-          icon: const Icon(
+          icon: Icon(
             CupertinoIcons.arrow_right_arrow_left_circle,
-            color: Colors.teal,
+            color: myColor.changeButtonColor,
           ),
           onPressed: () {
             context.read<MainContentState>().getCurrentMainContent(context.read<MainContentState>().getMainContentInputTextController.text);
@@ -76,45 +78,45 @@ class MainContentButtons extends StatelessWidget {
                 FlutterClipboard.copy(
                     '${context.read<MainContentState>().getDefaultContent}\n\n'
                     '${context.read<DescriptionContentState>().getDescriptionValue}');
-                _showSnackMessage(context, Colors.teal, 'Преобразовано и скопировано');
+                _showSnackMessage(context, myColor.changeButtonColor, 'Преобразовано и скопировано');
               } else {
                 FlutterClipboard.copy(
                     context.read<MainContentState>().getDefaultContent);
-                _showSnackMessage(context, Colors.teal, 'Преобразовано и скопировано');
+                _showSnackMessage(context, myColor.changeButtonColor, 'Преобразовано и скопировано');
               }
             }
           },
           style: TextButton.styleFrom(
-            primary: Colors.teal,
+            primary: myColor.changeButtonColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
-              side: const BorderSide(color: Colors.teal),
+              side: BorderSide(color: myColor.changeButtonColor),
             ),
           ),
         ),
         TextButton.icon(
-          label: const Text(
+          label: Text(
             'Очистить',
             style: TextStyle(
-              color: Colors.red,
+              color: myColor.clearButtonColor,
             ),
           ),
-          icon: const Icon(
+          icon: Icon(
             CupertinoIcons.clear_circled,
-            color: Colors.red,
+            color: myColor.clearButtonColor,
           ),
           onPressed: () {
             if (context.read<MainContentState>().getDefaultContent.isNotEmpty) {
               context.read<MainContentState>().getMainContentInputTextController.clear();
               context.read<MainContentState>().getCurrentMainContent('');
-              _showSnackMessage(context, Colors.red, 'Очищено');
+              _showSnackMessage(context, myColor.clearButtonColor, 'Очищено');
             }
           },
           style: TextButton.styleFrom(
-            primary: Colors.red,
+            primary: myColor.clearButtonColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
-              side: const BorderSide(color: Colors.red),
+              side: BorderSide(color: myColor.clearButtonColor),
             ),
           ),
         ),
@@ -131,7 +133,7 @@ class MainContentButtons extends StatelessWidget {
           message,
           style: const TextStyle(
             fontSize: 16,
-            color: Colors.white,
+            color: Colors.black,
           ),
         ),
         duration: const Duration(milliseconds: 250),
